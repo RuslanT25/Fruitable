@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Abstract
+namespace Entity.Concrete
 {
-    public interface IEntity
+    internal class FoodInfo
     {
-        public int Id { get; set; }
     }
 }
