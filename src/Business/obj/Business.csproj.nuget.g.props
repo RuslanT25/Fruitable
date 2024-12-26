@@ -13,4 +13,7 @@
     <SourceRoot Include="D:\Program Files\NuGetPackages\.nuget\packages\" />
     <SourceRoot Include="D:\Program Files (x86)\DevExpress 21.2\Components\Offline Packages\" />
   </ItemGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)\microsoft.entityframeworkcore\9.0.0\buildTransitive\net8.0\Microsoft.EntityFrameworkCore.props" Condition="Exists('$(NuGetPackageRoot)\microsoft.entityframeworkcore\9.0.0\buildTransitive\net8.0\Microsoft.EntityFrameworkCore.props')" />
+  </ImportGroup>
 </Project>

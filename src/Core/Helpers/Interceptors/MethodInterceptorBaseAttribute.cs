@@ -12,9 +12,6 @@ namespace Core.Helpers.Interceptors
     public class MethodInterceptorBaseAttribute : Attribute, IInterceptor
     {
         public int Priority { get; set; }
-        public virtual void Intercept(IInvocation invocation)
-        {
-
-        }
+        public virtual void Intercept(IInvocation invocation) { }
     }
 }
