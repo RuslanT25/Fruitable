@@ -18,6 +18,15 @@
           }
         }
       },
+      "CommonServiceLocator/2.0.7": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/CommonServiceLocator.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/CommonServiceLocator.dll": {}
+        }
+      },
       "FluentValidation/11.11.0": {
         "type": "package",
         "compile": {
@@ -419,6 +428,29 @@
         "lib/netstandard2.1/Castle.Core.dll",
         "lib/netstandard2.1/Castle.Core.xml",
         "readme.txt"
+      ]
+    },
+    "CommonServiceLocator/2.0.7": {
+      "sha512": "deByA+/7hfPSMqaqcITTkeZhGw41qiIon5F6Q5n5EcMPeYc5hXlifIrVpPKsur4g/PuxYU6umjTx8kQMog4npw==",
+      "type": "package",
+      "path": "commonservicelocator/2.0.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "commonservicelocator.2.0.7.nupkg.sha512",
+        "commonservicelocator.nuspec",
+        "lib/net46/CommonServiceLocator.dll",
+        "lib/net47/CommonServiceLocator.dll",
+        "lib/net48/CommonServiceLocator.dll",
+        "lib/net5.0/CommonServiceLocator.dll",
+        "lib/net6.0/CommonServiceLocator.dll",
+        "lib/net7.0/CommonServiceLocator.dll",
+        "lib/netcoreapp1.0/CommonServiceLocator.dll",
+        "lib/netcoreapp2.0/CommonServiceLocator.dll",
+        "lib/netcoreapp3.0/CommonServiceLocator.dll",
+        "lib/netstandard1.0/CommonServiceLocator.dll",
+        "lib/netstandard2.0/CommonServiceLocator.dll",
+        "lib/netstandard2.1/CommonServiceLocator.dll"
       ]
     },
     "FluentValidation/11.11.0": {
@@ -974,6 +1006,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Castle.Core >= 5.1.1",
+      "CommonServiceLocator >= 2.0.7",
       "FluentValidation >= 11.11.0",
       "Microsoft.AspNetCore.Http >= 2.2.2",
       "Microsoft.AspNetCore.Http.Abstractions >= 2.2.0",
@@ -1033,6 +1066,10 @@
           "Castle.Core": {
             "target": "Package",
             "version": "[5.1.1, )"
+          },
+          "CommonServiceLocator": {
+            "target": "Package",
+            "version": "[2.0.7, )"
           },
           "FluentValidation": {
             "target": "Package",
