@@ -19,26 +19,26 @@ namespace Core.Aspects.Caching
             _duration = duration;
         }
 
-        protected override void OnBefore(IInvocation invocation)
+        protected override async void OnBefore(IInvocation invocation)
         {
             var methodName = $"{invocation.Method.ReflectedType.FullName}.{invocation.Method.Name}";
             var arguments = invocation.Arguments.Select(arg => arg != null ? arg.ToString() : "<Null>").ToArray();
             var key = $"{methodName}({string.Join(", ", arguments)})";
 
-            if (_cacheManager.IsAdd(key))
+            if (await _cacheManager.IsAddAsync(key))
             {
-                invocation.ReturnValue = _cacheManager.Get<object>(key);
+                invocation.ReturnValue = await _cacheManager.GetAsync<object>(key);
                 return;
             }
         }
 
-        protected override void OnAfter(IInvocation invocation)
+        protected override async void OnAfter(IInvocation invocation)
         {
             var methodName = $"{invocation.Method.ReflectedType.FullName}.{invocation.Method.Name}";
             var arguments = invocation.Arguments.Select(arg => arg != null ? arg.ToString() : "<Null>").ToArray();
             var key = $"{methodName}({string.Join(", ", arguments)})";
 
-            _cacheManager.Add(key, invocation.ReturnValue, _duration);
+            await _cacheManager.AddAsync(key, invocation.ReturnValue, _duration);
         }
     }
 }

@@ -20,9 +20,9 @@ namespace Core.Aspects.Caching
             _cacheManager = cacheManager ?? throw new ArgumentNullException(nameof(cacheManager));
         }
 
-        protected override void OnSuccess(IInvocation invocation)
+        protected override async void OnSuccess(IInvocation invocation)
         {
-            _cacheManager.RemoveByPattern(_pattern);
+            await _cacheManager.RemoveByPatternAsync(_pattern);
         }
     }
 }

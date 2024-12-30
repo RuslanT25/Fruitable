@@ -33,8 +33,12 @@ namespace Core.Aspects.Validation.FluentValidation
             var validator = (IValidator)Activator.CreateInstance(_validatorType);
             var entityType = _validatorType.BaseType.GetGenericArguments()[0];
             //UserValidator: AbstractValidator<User>  basetype AbstractValidator<User>, [0] = User
+            if (entityType == null)
+            {
+                throw new InvalidOperationException("The validator type does not have a valid base type.");
+            }
 
-            var entities = invocation.Arguments.Where(t => t != null && t.GetType() == entityType);
+            var entities = invocation.Arguments.Where(t => t != null && entityType.IsInstanceOfType(t));
             foreach (T entity in entities)
             {
                 var validationContext = new ValidationContext<T>(entity);

@@ -1,10 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Core.CrossCuttingConcerns.Caching.Microsoft
 {
@@ -16,32 +11,33 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
         {
             _cache = memoryCache;
         }
-        public T Get<T>(string key)
+
+        public async Task<T> GetAsync<T>(string key)
         {
-            return _cache.Get<T>(key);
+            return await Task.FromResult(_cache.Get<T>(key));
         }
 
-        public object Get(string key)
+        public async Task<object> GetAsync(string key)
         {
-            return _cache.Get(key);
+            return await Task.FromResult(_cache.Get(key));
         }
 
-        public void Add(string key, object data, int duration)
+        public async Task AddAsync(string key, object data, int duration)
         {
-            _cache.Set(key, data, TimeSpan.FromMinutes(duration));
+            await Task.Run(() => _cache.Set(key, data, TimeSpan.FromMinutes(duration)));
         }
 
-        public bool IsAdd(string key)
+        public async Task<bool> IsAddAsync(string key)
         {
-            return _cache.TryGetValue(key, out _);
+            return await Task.FromResult(_cache.TryGetValue(key, out _));
         }
 
-        public void Remove(string key)
+        public async Task RemoveAsync(string key)
         {
-            _cache.Remove(key);
+            await Task.Run(() => _cache.Remove(key));
         }
 
-        public void RemoveByPattern(string pattern)
+        public async Task RemoveByPatternAsync(string pattern)
         {
             var cacheEntriesCollectionDefinition = typeof(MemoryCache).GetProperty("EntriesCollection", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             var cacheEntriesCollection = cacheEntriesCollectionDefinition.GetValue(_cache) as dynamic;

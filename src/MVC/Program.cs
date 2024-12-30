@@ -3,7 +3,7 @@ using Core.DependecyResolve;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddCoreDependencies();
+builder.Services.AddCoreDependencies(builder.Configuration);
 
 var app = builder.Build();
 

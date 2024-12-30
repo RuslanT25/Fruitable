@@ -1,0 +1,7 @@
+D:\FruitableApp\src\API\obj\Debug\net8.0\API.csproj.AssemblyReference.cache
+D:\FruitableApp\src\API\obj\Debug\net8.0\API.GeneratedMSBuildEditorConfig.editorconfig
+D:\FruitableApp\src\API\obj\Debug\net8.0\API.AssemblyInfoInputs.cache
+D:\FruitableApp\src\API\obj\Debug\net8.0\API.AssemblyInfo.cs
+D:\FruitableApp\src\API\obj\Debug\net8.0\API.csproj.CoreCompileInputs.cache
+D:\FruitableApp\src\API\obj\Debug\net8.0\API.MvcApplicationPartsAssemblyInfo.cache
+D:\FruitableApp\src\API\obj\Debug\net8.0\API.sourcelink.json
