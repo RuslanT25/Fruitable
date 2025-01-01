@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using StackExchange.Redis;
+using System;
+using System.Threading.Tasks;
 
 namespace Core.CrossCuttingConcerns.Caching.Redis
 {
@@ -19,20 +21,27 @@ namespace Core.CrossCuttingConcerns.Caching.Redis
             return value.HasValue ? System.Text.Json.JsonSerializer.Deserialize<T>(value) : default;
         }
 
-        public async Task AddAsync<T>(string key, T data, TimeSpan duration)
+        public async Task<object> GetAsync(string key)
+        {
+            var value = await _database.StringGetAsync(key);
+            return value.HasValue ? System.Text.Json.JsonSerializer.Deserialize<object>(value) : null;
+        }
+
+        public async Task AddAsync(string key, object data, int duration)
         {
             var serializedData = System.Text.Json.JsonSerializer.Serialize(data);
-            await _database.StringSetAsync(key, serializedData, duration);
+            var expiration = TimeSpan.FromMinutes(duration);
+            await _database.StringSetAsync(key, serializedData, expiration);
         }
 
-        public bool IsAdd(string key)
+        public async Task<bool> IsAddAsync(string key)
         {
-            return _database.KeyExists(key);
+            return await _database.KeyExistsAsync(key);
         }
 
-        public void Remove(string key)
+        public async Task RemoveAsync(string key)
         {
-            _database.KeyDelete(key);
+            await _database.KeyDeleteAsync(key);
         }
 
         public async Task RemoveByPatternAsync(string pattern)
@@ -49,5 +58,4 @@ namespace Core.CrossCuttingConcerns.Caching.Redis
             }
         }
     }
-
 }
